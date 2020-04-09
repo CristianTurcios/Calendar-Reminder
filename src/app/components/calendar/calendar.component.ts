@@ -14,7 +14,7 @@ import { faChevronLeft, faChevronRight, IconDefinition } from '@fortawesome/free
 })
 export class CalendarComponent implements OnInit {
   faChevronLeft: IconDefinition;
-  faCalendarPlus: IconDefinition;
+  faChevronRight: IconDefinition;
   daysOfWeek: Array<string>;
   monthToDisplay: moment.Moment;
   daysOfMonth$: Observable<{ calendar: Array<IDays> }>;
@@ -25,6 +25,8 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.monthToDisplay = moment();
+    this.faChevronLeft = faChevronLeft;
+    this.faChevronRight = faChevronRight;
     this.daysOfMonth$ = this.store.select('calendar');
     this.daysOfWeek = this.getDaysOfWeek();
     this.generateCalendar(this.monthToDisplay);
