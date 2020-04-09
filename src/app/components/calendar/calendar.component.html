@@ -7,6 +7,13 @@
     <button type="button" class="btn btn-success" (click)="changeMonth(true)">
       <fa-icon [icon]="faChevronRight"></fa-icon>
     </button>
+
+    <button class="btn btn-danger col offset-md-4 btn-margin-left">
+      <span>
+        <fa-icon [icon]="faTrashAlt"></fa-icon>
+      </span>
+      Delete All Events
+    </button>
   </div>
   <p class="font-italic text-muted mb-5">No events for this day.</p>
   <ol class="day-names list-unstyled">
@@ -14,10 +21,12 @@
   </ol>
 
   <ol class="days list-unstyled">
-    <li *ngFor="let dayOfMonth of (daysOfMonth$ | async).calendar"
-      [ngClass]="{'outside': !dayOfMonth.isInCurrentMonth, 'actual-day' :
+    <li *ngFor="let dayOfMonth of (daysOfMonth$ | async).calendar" [ngClass]="{'outside': !dayOfMonth.isInCurrentMonth, 'actual-day' :
       checkIfIsActualDay(dayOfMonth.date)}">
       <div class="date">{{dayOfMonth.date.date()}}</div>
     </li>
   </ol>
+  <button class="float-right">
+    <fa-icon [icon]="faCalendarPlus"></fa-icon>
+  </button>
 </div>

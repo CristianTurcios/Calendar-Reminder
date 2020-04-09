@@ -18,6 +18,7 @@
 Calendar Styling */
 .calendar {
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .month {
@@ -90,4 +91,41 @@ Calendar Styling */
 
 .actual-day {
   background: #DBFFD6;
+}
+
+.float-right {
+  width: 60px;
+  height: 60px;
+  background-color: #3ca55c;
+  color: #FFFFFF;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #2c3a39;
+  cursor: pointer;
+  border-style: none;
+  animation: dancing .75s ease 0s 10;
+  outline-color: transparent;
+  outline-style: none;
+}
+
+.float-right:hover {
+  color: #FFFFFF;
+  outline-color: transparent;
+  outline-style: none;
+}
+
+@keyframes dancing {
+  25% {
+    transform: translateY(20px) skew(-2deg);
+  }
+
+  0%,
+  50%,
+  100% {
+    transform: translateY(0) skew(0);
+  }
+
+  75% {
+    transform: translateY(20px) skew(2deg);
+  }
 }

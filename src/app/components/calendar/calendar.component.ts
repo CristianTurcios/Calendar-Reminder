@@ -5,7 +5,7 @@ import { IDays } from 'src/app/interfaces/IDays';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../redux/reducers/index.reducer';
 import * as CalendarActions from '../../redux/actions/calendar.actions';
-import { faChevronLeft, faChevronRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faChevronLeft, faChevronRight, faCalendarPlus, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-calendar',
@@ -13,8 +13,11 @@ import { faChevronLeft, faChevronRight, IconDefinition } from '@fortawesome/free
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
+  faTrashAlt: IconDefinition;
   faChevronLeft: IconDefinition;
   faChevronRight: IconDefinition;
+  faCalendarPlus: IconDefinition;
+
   daysOfWeek: Array<string>;
   monthToDisplay: moment.Moment;
   daysOfMonth$: Observable<{ calendar: Array<IDays> }>;
@@ -25,8 +28,10 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.monthToDisplay = moment();
+    this.faTrashAlt = faTrashAlt;
     this.faChevronLeft = faChevronLeft;
     this.faChevronRight = faChevronRight;
+    this.faCalendarPlus =  faCalendarPlus;
     this.daysOfMonth$ = this.store.select('calendar');
     this.daysOfWeek = this.getDaysOfWeek();
     this.generateCalendar(this.monthToDisplay);
