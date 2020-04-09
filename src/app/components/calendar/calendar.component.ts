@@ -102,4 +102,8 @@ export class CalendarComponent implements OnInit {
     this.getActualDate();
     this.generateCalendar(this.monthToDisplay);
   }
+
+  checkIfIsActualDay(day: moment.Moment): boolean {
+    return day.isSame(moment(), 'day');
+  }
 }

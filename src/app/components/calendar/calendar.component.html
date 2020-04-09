@@ -15,7 +15,8 @@
 
   <ol class="days list-unstyled">
     <li *ngFor="let dayOfMonth of (daysOfMonth$ | async).calendar"
-      [ngClass]="{'outside': !dayOfMonth.isInCurrentMonth}">
+      [ngClass]="{'outside': !dayOfMonth.isInCurrentMonth, 'actual-day' :
+      checkIfIsActualDay(dayOfMonth.date)}">
       <div class="date">{{dayOfMonth.date.date()}}</div>
     </li>
   </ol>
