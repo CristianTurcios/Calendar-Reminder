@@ -5,6 +5,7 @@ import { IDays } from 'src/app/interfaces/IDays';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../redux/reducers/index.reducer';
 import * as CalendarActions from '../../redux/actions/calendar.actions';
+import { faChevronLeft, faChevronRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-calendar',
@@ -12,6 +13,8 @@ import * as CalendarActions from '../../redux/actions/calendar.actions';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
+  faChevronLeft: IconDefinition;
+  faCalendarPlus: IconDefinition;
   daysOfWeek: Array<string>;
   monthToDisplay: moment.Moment;
   daysOfMonth$: Observable<{ calendar: Array<IDays> }>;
