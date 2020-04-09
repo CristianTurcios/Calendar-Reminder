@@ -87,6 +87,12 @@ export class CalendarComponent implements OnInit {
     } while (firtsDayOfCalendar.isSameOrBefore(lastDayOfCalendar));
   }
 
+  /**
+   * changeMonth function provide the ability to add or substract a month using momentjs library
+   * add or substract a month give the opportunity to change between months and use the function genereteCalendar
+   * to calculate the new days of the month selected
+   * @param isNext if true, add new month Jan => Feb, if false substract month Feb => Jan
+   */
   changeMonth(isNext: boolean): void {
     if (isNext) {
       this.monthToDisplay.add(1, 'months');
