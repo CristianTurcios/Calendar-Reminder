@@ -86,4 +86,14 @@ export class CalendarComponent implements OnInit {
       firtsDayOfCalendar.add(1, 'days');
     } while (firtsDayOfCalendar.isSameOrBefore(lastDayOfCalendar));
   }
+
+  changeMonth(isNext: boolean): void {
+    if (isNext) {
+      this.monthToDisplay.add(1, 'months');
+    } else {
+      this.monthToDisplay.subtract(1, 'months');
+    }
+    this.getActualDate();
+    this.generateCalendar(this.monthToDisplay);
+  }
 }
