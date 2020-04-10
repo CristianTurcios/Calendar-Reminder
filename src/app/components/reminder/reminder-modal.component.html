@@ -1,6 +1,46 @@
 <div class="modal-header">
-  <h1>test</h1>
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <div class="modal-body">
-  <h2>test2</h2>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="inputReminder">Name</label>
+      <input id="inputReminder" type="text" class="form-control" aria-describedby="name" placeholder="Reminder Name"
+        formControlName="name" [ngClass]="{'is-invalid': f.name.errors && (f.name.dirty || f.name.touched)}">
+      <small class="form-text text-muted">Only 30 Characthers allowed.</small>
+      <div class="invalid-feedback" *ngIf="f.name.errors && (f.name.dirty || f.name.touched)">
+        Reminder name is required and Only accept 30 Characthers!
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputColor">Color</label>
+      <input id="inputColor" type="text" class="form-control" aria-describedby="color" [(colorPicker)]="color"
+        [style.background]="color" formControlName="color" readonly="true" />
+    </div>
+    <div class="form-group">
+      <label for="inputCity">City</label>
+      <select id="inputCity" class="form-control is-invalid" formControlName="city"
+        [ngClass]="{'is-invalid': f.city.errors && (f.city.dirty || f.city.touched)}">
+        <option value="" disabled>Choose your city</option>
+        <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
+      </select>
+      <div class="invalid-feedback" *ngIf="f.city.errors && (f.city.dirty || f.city.touched)">
+        Please choose a city.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputDate">Date</label>
+      <input id="inputDate" type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [bsValue]="bsValue"
+        [bsConfig]="{ adaptivePosition: true }" formControlName="date">
+    </div>
+    <div class="form-group">
+      <label for="inputHour">Hour</label>
+      <timepicker id="inputHour" formControlName="hour"></timepicker>
+    </div>
+    <button type="button" class="btn btn-danger float-right margin" (click)="closeModal()">Cancel</button>
+    <button type="submit" class="btn btn-success float-right margin" [disabled]="!addForm.valid">Submit</button>
+  </form>
 </div>
