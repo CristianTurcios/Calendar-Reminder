@@ -6,9 +6,11 @@ import * as ReminderActions from '../../redux/actions/reminders.actions';
 import * as fromApp from '../../redux/reducers/index.reducer';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
+import { environment } from '../../../environments/environment';
 import { IReminder } from 'src/app/interfaces/IReminder';
 import { IDays } from 'src/app/interfaces/IDays';
 import { WeatherForecastService } from 'src/app/services/weather-forecast.service';
+import { IWeatherForecastData } from 'src/app/interfaces/IWeatherForecast';
 
 @Component({
   selector: 'app-reminder',
@@ -105,9 +107,9 @@ export class ModalContentComponent implements OnInit {
       this.weatherForecastService.getWeatherByCity(
         this.addForm.value.city,
         moment(this.addForm.value.date).format('YYYY-MM-DD')
-      ).subscribe((response) => {
+      ).subscribe((response: Array<IWeatherForecastData>) => {
         this.addForm.value.weather = response.length > 0 ?
-          `https://www.weatherbit.io/static/img/icons/${response[0].weather.icon}.png` :
+          `${environment.WEATHER_ICONS}/${response[0].weather.icon}.png` :
           this.addForm.value.weather;
         this.store.dispatch(new ReminderActions.AddReminder(this.addForm.value));
       }, () => {

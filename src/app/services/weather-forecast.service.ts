@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IWeatherForecast } from '../interfaces/IWeatherForecast';
+import { IWeatherForecast, IWeatherForecastData } from '../interfaces/IWeatherForecast';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class WeatherForecastService {
     public http: HttpClient,
   ) { }
 
-  getWeatherByCity(data, date: string): Observable<any> {
+  getWeatherByCity(data, date: string): Observable<Array<IWeatherForecastData>> {
     const city = data.split(',')[0].trim();
     const country = data.split(',')[1].trim();
     const params = {
