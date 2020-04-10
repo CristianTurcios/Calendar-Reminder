@@ -1,6 +1,7 @@
 import * as ReminderActions from '../actions/reminders.actions';
 import { IReminder } from 'src/app/interfaces/IReminder';
 import { IDays } from 'src/app/interfaces/IDays';
+import * as moment from 'moment';
 
 export interface State {
     reminders: IReminder[];
@@ -18,9 +19,13 @@ export function reminderReducer(state: State = initialState, action: ReminderAct
         case ReminderActions.ADD_REMINDER:
             const index: number = state.reminders.indexOf(state.reminders.find(element => element.id === action.payload.id));
             if (index === -1) {
+                let updatedReminders = [...state.reminders, action.payload];
+                updatedReminders = updatedReminders.sort((current, next) => {
+                    return moment(current.date).isSameOrBefore(next.date) ? -1 : 1;
+                });
                 return {
                     ...state,
-                    reminders: [...state.reminders, action.payload]
+                    reminders: updatedReminders
                 };
             } else {
                 const reminder = state.reminders[index];
@@ -28,8 +33,12 @@ export function reminderReducer(state: State = initialState, action: ReminderAct
                     ...reminder,
                     ...action.payload
                 };
-                const updatedReminders = [...state.reminders];
+                let updatedReminders = [...state.reminders];
                 updatedReminders[index] = updatedReminder;
+
+                updatedReminders = updatedReminders.sort((current, next) => {
+                    return moment(current.date).isSameOrBefore(next.date) ? -1 : 1;
+                });
                 return {
                     ...state,
                     reminders: updatedReminders

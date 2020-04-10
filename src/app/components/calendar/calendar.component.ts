@@ -135,4 +135,25 @@ export class CalendarComponent implements OnInit {
       this.store.dispatch(new ReminderActions.OpenModal(dayOfMonth));
     }
   }
+
+  checkIfReminderIsInTheCurrentDate(actualDate: moment.Moment, reminderDate: moment.Moment): boolean {
+    return actualDate.isSame(reminderDate, 'day');
+  }
+
+  editReminder(reminder: IReminder): void {
+    console.log('reminder', reminder);
+    this.isEditing = true;
+    this.store.dispatch(new ReminderActions.EditReminder(reminder));
+    setTimeout(() => this.isEditing = false, 1);
+  }
+
+  deleteReminder(index: number): void {
+    this.isDeleting = true;
+    this.store.dispatch(new ReminderActions.DeleteReminder(index));
+    setTimeout(() => this.isDeleting = false, 1);
+  }
+
+  deleteAllReminders(): void {
+    this.store.dispatch(new ReminderActions.DeleteAllReminders());
+  }
 }

@@ -15,7 +15,7 @@ export class AddReminder implements Action {
     readonly type = ADD_REMINDER;
     constructor(public payload: IReminder) {
         this.payload.date = moment(this.payload.date);
-        this.payload.hour = moment(this.payload.hour).format('HH:mm');
+        this.payload.hour = moment(this.payload.date).format('HH:mm');
     }
 }
 

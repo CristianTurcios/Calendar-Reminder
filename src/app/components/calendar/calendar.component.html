@@ -22,8 +22,16 @@
 
   <ol class="days list-unstyled">
     <li *ngFor="let dayOfMonth of (daysOfMonth$ | async).calendar" [ngClass]="{'outside': !dayOfMonth.isInCurrentMonth, 'actual-day' :
-      checkIfIsActualDay(dayOfMonth.date)}">
+      checkIfIsActualDay(dayOfMonth.date)}" (click)="openModal(dayOfMonth)" class="scrollable-day">
       <div class="date">{{dayOfMonth.date.date()}}</div>
+      <ng-container *ngFor="let reminder of (reminders$ | async).reminders; let i = index">
+        <div class="event" (click)="editReminder(reminder)" [style.background]="reminder.color"
+          *ngIf="checkIfReminderIsInTheCurrentDate(dayOfMonth.date, reminder.date)">
+          {{reminder.name}} <b>{{reminder.hour}}</b>
+          <fa-icon [icon]="faTrashAlt" (click)="deleteReminder(i)" class="margin">
+          </fa-icon>
+        </div>
+      </ng-container>
     </li>
   </ol>
   <button class="float-right" (click)="openModal()">

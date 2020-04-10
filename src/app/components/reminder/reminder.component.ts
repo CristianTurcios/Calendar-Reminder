@@ -26,7 +26,6 @@ export class ReminderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.store.select('reminder').subscribe(stateData => {
-      console.log('stateData', stateData);
       if (stateData.editedReminder) {
         this.openModal(stateData.editedReminder, 'Edit Reminder');
       } else if (stateData.dayOfMonth) {
@@ -94,8 +93,7 @@ export class ModalContentComponent implements OnInit {
       name: [this.reminder.name, [Validators.required, Validators.maxLength(30)]],
       color: [''],
       city: [this.reminder.city, Validators.required],
-      date: [new Date(year, month, day), Validators.required],
-      hour: [new Date(year, month, day, parseInt(hour[0], 10), parseInt(hour[1], 10)), Validators.required],
+      date: [new Date(year, month, day, parseInt(hour[0], 10), parseInt(hour[1], 10)), Validators.required],
     });
   }
 

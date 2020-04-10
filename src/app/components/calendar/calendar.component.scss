@@ -93,6 +93,12 @@ Calendar Styling */
   background: #DBFFD6;
 }
 
+.scrollable-day {
+  height: 144px;
+  overflow-y: auto;
+  cursor: pointer;
+}
+
 .float-right {
   width: 60px;
   height: 60px;
