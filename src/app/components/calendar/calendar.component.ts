@@ -136,12 +136,15 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+  isWeekend(day: moment.Moment): boolean {
+    return parseInt(day.format('d'), 10) === 0 || parseInt(day.format('d'), 10) === 6  ? true : false;
+  }
+
   checkIfReminderIsInTheCurrentDate(actualDate: moment.Moment, reminderDate: moment.Moment): boolean {
     return actualDate.isSame(reminderDate, 'day');
   }
 
   editReminder(reminder: IReminder): void {
-    console.log('reminder', reminder);
     this.isEditing = true;
     this.store.dispatch(new ReminderActions.EditReminder(reminder));
     setTimeout(() => this.isEditing = false, 1);

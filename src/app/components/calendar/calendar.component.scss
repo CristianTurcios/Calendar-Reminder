@@ -90,7 +90,12 @@ Calendar Styling */
 }
 
 .actual-day {
-  background: #DBFFD6;
+  background: #DBFFD6 !important;
+}
+
+.weekends-days {
+  background: #f3fff0;
+  color: #4a9fc7;
 }
 
 .scrollable-day {

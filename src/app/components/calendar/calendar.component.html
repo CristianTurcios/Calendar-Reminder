@@ -21,8 +21,10 @@
   </ol>
 
   <ol class="days list-unstyled">
-    <li *ngFor="let dayOfMonth of (daysOfMonth$ | async).calendar" [ngClass]="{'outside': !dayOfMonth.isInCurrentMonth, 'actual-day' :
-      checkIfIsActualDay(dayOfMonth.date)}" (click)="openModal(dayOfMonth)" class="scrollable-day">
+    <li *ngFor="let dayOfMonth of (daysOfMonth$ | async).calendar"
+      [ngClass]="{'outside': !dayOfMonth.isInCurrentMonth, 'weekends-days': isWeekend(dayOfMonth.date),  'actual-day' :
+      checkIfIsActualDay(dayOfMonth.date)}" (click)="openModal(dayOfMonth)"
+      class="scrollable-day">
       <div class="date">{{dayOfMonth.date.date()}}</div>
       <ng-container *ngFor="let reminder of (reminders$ | async).reminders; let i = index">
         <div class="event" (click)="editReminder(reminder)" [style.background]="reminder.color"
