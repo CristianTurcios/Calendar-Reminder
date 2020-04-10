@@ -5,7 +5,12 @@ import { IDays } from 'src/app/interfaces/IDays';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../redux/reducers/index.reducer';
 import * as CalendarActions from '../../redux/actions/calendar.actions';
-import { faTrashAlt, faChevronLeft, faChevronRight, faCalendarPlus, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import * as ReminderActions from '../../redux/actions/reminders.actions';
+
+import {
+  faTrashAlt, faChevronLeft, faChevronRight, faCalendarPlus, IconDefinition
+ } from '@fortawesome/free-solid-svg-icons';
+import { IReminder } from 'src/app/interfaces/IReminder';
 
 @Component({
   selector: 'app-calendar',
@@ -13,6 +18,8 @@ import { faTrashAlt, faChevronLeft, faChevronRight, faCalendarPlus, IconDefiniti
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
+  isEditing: boolean;
+  isDeleting: boolean;
   faTrashAlt: IconDefinition;
   faChevronLeft: IconDefinition;
   faChevronRight: IconDefinition;
@@ -21,6 +28,7 @@ export class CalendarComponent implements OnInit {
   daysOfWeek: Array<string>;
   monthToDisplay: moment.Moment;
   daysOfMonth$: Observable<{ calendar: Array<IDays> }>;
+  reminders$: Observable<{ reminders: Array<IReminder> }>;
 
   constructor(
     private store: Store<fromApp.AppState>,
@@ -32,6 +40,7 @@ export class CalendarComponent implements OnInit {
     this.faChevronLeft = faChevronLeft;
     this.faChevronRight = faChevronRight;
     this.faCalendarPlus =  faCalendarPlus;
+    this.reminders$ = this.store.select('reminder');
     this.daysOfMonth$ = this.store.select('calendar');
     this.daysOfWeek = this.getDaysOfWeek();
     this.generateCalendar(this.monthToDisplay);
@@ -115,5 +124,15 @@ export class CalendarComponent implements OnInit {
    */
   checkIfIsActualDay(day: moment.Moment): boolean {
     return day.isSame(moment(), 'day');
+  }
+
+  /**
+   * function that emit an action to the store to open modal and pass the dayOfMonth selected
+   * @param dayOfMonth selected by the user where it will be added or edited an event
+   */
+  openModal(dayOfMonth: IDays = { date: moment(), isInCurrentMonth: false }): void {
+    if (!this.isEditing && !this.isDeleting) {
+      this.store.dispatch(new ReminderActions.OpenModal(dayOfMonth));
+    }
   }
 }
