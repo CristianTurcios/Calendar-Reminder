@@ -83,7 +83,6 @@ export class ModalContentComponent implements OnInit {
 
   ngOnInit() {
     this.color = this.reminder.color;
-    // Load from api?
     this.cities = ['Tegucigalpa, Honduras', 'San Pedro Sula, Honduras', 'Bogota, Colombia', 'Medellin, Colombia'];
     const year = this.reminder.date.year();
     const month = this.reminder.date.month();
@@ -103,8 +102,13 @@ export class ModalContentComponent implements OnInit {
       this.addForm.value.id = this.reminder.id;
       this.addForm.value.color = this.color;
       this.store.dispatch(new ReminderActions.StopEditReminder());
-      this.weatherForecastService.getWeatherByCity(this.addForm.value.city).subscribe((response) => {
-        this.addForm.value.weather = `https://www.weatherbit.io/static/img/icons/${response.data[0].weather.icon}.png`;
+      this.weatherForecastService.getWeatherByCity(
+        this.addForm.value.city,
+        moment(this.addForm.value.date).format('YYYY-MM-DD')
+      ).subscribe((response) => {
+        this.addForm.value.weather = response.length > 0 ?
+          `https://www.weatherbit.io/static/img/icons/${response[0].weather.icon}.png` :
+          this.addForm.value.weather;
         this.store.dispatch(new ReminderActions.AddReminder(this.addForm.value));
       }, () => {
         this.addForm.value.weather = '';

@@ -18,6 +18,7 @@ export function reminderReducer(state: State = initialState, action: ReminderAct
     switch (action.type) {
         case ReminderActions.ADD_REMINDER:
             const index: number = state.reminders.indexOf(state.reminders.find(element => element.id === action.payload.id));
+            console.log('action.payload', action.payload);
             if (index === -1) {
                 let updatedReminders = [...state.reminders, action.payload];
                 updatedReminders = updatedReminders.sort((current, next) => {

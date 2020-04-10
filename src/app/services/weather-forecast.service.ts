@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { IWeatherForecast } from '../interfaces/IWeatherForecast';
 
 @Injectable({
@@ -12,7 +13,7 @@ export class WeatherForecastService {
     public http: HttpClient,
   ) { }
 
-  getWeatherByCity(data): Observable<IWeatherForecast> {
+  getWeatherByCity(data, date: string): Observable<any> {
     const city = data.split(',')[0].trim();
     const country = data.split(',')[1].trim();
     const params = {
@@ -21,6 +22,8 @@ export class WeatherForecastService {
       key: environment.API_KEY
     };
     const url = `${environment.API_WEATHER}`;
-    return this.http.get<IWeatherForecast>(url, { params });
+    return this.http.get<IWeatherForecast>(url, { params }).pipe(
+      map((result) => result.data.filter((element) => element.valid_date === date))
+    );
   }
 }

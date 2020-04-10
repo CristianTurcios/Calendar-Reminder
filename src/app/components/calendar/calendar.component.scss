@@ -58,7 +58,6 @@ Calendar Styling */
   font-size: 0.75rem;
   padding: 0.4rem;
   color: white;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   border-radius: 4rem;
@@ -104,7 +103,7 @@ Calendar Styling */
   cursor: pointer;
 }
 
-.float-right {
+button.float-right {
   width: 60px;
   height: 60px;
   background-color: #3ca55c;
@@ -123,6 +122,11 @@ Calendar Styling */
   color: #FFFFFF;
   outline-color: transparent;
   outline-style: none;
+}
+
+.weather-forecast {
+  width: 20px;
+  height: 20px;
 }
 
 @keyframes dancing {

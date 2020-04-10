@@ -25,13 +25,14 @@
       [ngClass]="{'outside': !dayOfMonth.isInCurrentMonth, 'weekends-days': isWeekend(dayOfMonth.date),  'actual-day' :
       checkIfIsActualDay(dayOfMonth.date)}" (click)="openModal(dayOfMonth)"
       class="scrollable-day">
-      <div class="date">{{dayOfMonth.date.date()}}</div>
+      <span class="date">{{dayOfMonth.date.date()}}</span>
       <ng-container *ngFor="let reminder of (reminders$ | async).reminders; let i = index">
         <div class="event" (click)="editReminder(reminder)" [style.background]="reminder.color"
           *ngIf="checkIfReminderIsInTheCurrentDate(dayOfMonth.date, reminder.date)">
           {{reminder.name}} <b>{{reminder.hour}}</b>
           <fa-icon [icon]="faTrashAlt" (click)="deleteReminder(i)" class="margin">
           </fa-icon>
+          <img *ngIf="reminder.weather !== ''" [src]="reminder.weather" alt="" class="weather-forecast">
         </div>
       </ng-container>
     </li>
