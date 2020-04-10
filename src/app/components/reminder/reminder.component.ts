@@ -11,6 +11,7 @@ import { IReminder } from 'src/app/interfaces/IReminder';
 import { IDays } from 'src/app/interfaces/IDays';
 import { WeatherForecastService } from 'src/app/services/weather-forecast.service';
 import { IWeatherForecastData } from 'src/app/interfaces/IWeatherForecast';
+import { CitiesService } from 'src/app/services/cities.service';
 
 @Component({
   selector: 'app-reminder',
@@ -75,6 +76,7 @@ export class ModalContentComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
     private formBuilder: FormBuilder,
+    private citiesService: CitiesService,
     private store: Store<fromApp.AppState>,
     private weatherForecastService: WeatherForecastService) {
     this.bsValue = new Date();
@@ -85,7 +87,7 @@ export class ModalContentComponent implements OnInit {
 
   ngOnInit() {
     this.color = this.reminder.color;
-    this.cities = ['Tegucigalpa, Honduras', 'San Pedro Sula, Honduras', 'Bogota, Colombia', 'Medellin, Colombia'];
+    this.cities = this.citiesService.getCities();
     const year = this.reminder.date.year();
     const month = this.reminder.date.month();
     const day = this.reminder.date.date();
