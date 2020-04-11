@@ -32,7 +32,8 @@
           {{reminder.name}} <b>{{reminder.hour}}</b>
           <fa-icon [icon]="faTrashAlt" (click)="deleteReminder(i)" class="margin">
           </fa-icon>
-          <img *ngIf="reminder.weather !== ''" [src]="reminder.weather" alt="" class="weather-forecast">
+          <img *ngIf="reminder.weather !== '' && reminder.weather !== undefined" [src]="reminder.weather" alt=""
+            class="weather-forecast">
         </div>
       </ng-container>
     </li>
