@@ -34,12 +34,10 @@ describe('ReminderComponent', () => {
     fixture = TestBed.createComponent(ModalContentComponent);
   });
 
-  // Con el fakeAsync le decimos a Jasmine que nuestro test es asincrono
   it('should call updateHero when save is called', fakeAsync(() => {
     mockWeatherForecastService.getWeatherByCity.and.returnValue(of({}));
     fixture.detectChanges();
     fixture.componentInstance.onSubmit();
-    // con flush le decimos que espere a que terminen todas las llamadas asincronas que existan
     flush();
     expect(mockWeatherForecastService.updateHero).toHaveBeenCalled();
   }));
