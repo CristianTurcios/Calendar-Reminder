@@ -1,27 +1,49 @@
-# CalendarReminder
+# Calendar Reminder
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
+Live Demo: [Calendar Reminder](https://cranky-bohr-4dedce.netlify.com/)
 
-## Development server
+## Pre-requisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Remember install the last version of  [Angular CLI](https://angular.io/guide/setup-local)
 
-## Code scaffolding
+## ## Development
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Run  `git clone git@github.com:CristianTurcios/Calendar-Reminder.git` in your console.
+2. Run  `cd calendar-reminder`.
+3. Run  `npm i`.
+4. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+5. Run `ng test` to run test
 
-## Build
+## Mandatory Features Completed:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+ 1. Ability to add a new "reminder" (max 30 chars) for a user entered day and time. Also, include a city.
+ 2. Display reminders on the calendar view in the correct time order.
+ 3. Allow the user to select color when creating a reminder and display it appropriately.
+ 4. Ability to edit reminders – including changing text, city, day, time and color.
+ 5. Add a weather service call from a free API such as Open Weather Map, and get the weather forecast (ex. Rain) for the date of the calendar reminder based on the city.
+ 6. Unit test the functionality: Ability to add a new "reminder" (max 30 chars) for a user entered day and time. Also, include a city.
 
-## Running unit tests
+## Bonus Features Completed:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Expand the calendar to support more than the current month.
+2. Properly handle overflow when multiple reminders appear on the same date.
+3. Functionality to delete one or ALL the reminders for a specific day.
 
-## Running end-to-end tests
+## Considerations
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- State Management was managed with [ngrx](https://ngrx.io/)
+- To retrieve weather data from cities was managed with [weatherbit.io](https://www.weatherbit.io/)
+- App is hosted in [Netlify](https://www.netlify.com/).
+- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
+- Test were managed with karma and Jasmine.
+- Browser compatibility: Google Chrome, Firefox, Microsoft Edge. Not Support IE.
 
-## Further help
+## Calendar Reminder Screenshots
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+![App whitout Reminder](https://photos.app.goo.gl/BuyJYnr8G6Njjw3w5)
+
+![Modal Reminder](https://photos.app.goo.gl/9iKyR3PHkmXrnzy57)
+
+![Calendar with Reminders](https://photos.app.goo.gl/xmN3xJCFSyFTCgFh8)
+
+![Test](https://photos.app.goo.gl/qeCNRHujDizzqq4s8)
