@@ -46,11 +46,19 @@ export class ReminderComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   *
+   * @param reminder can be two different cases, this reminder can be edited or the user is creating a new reminder
+   * @param title to be shown in the modal can be Add or Edit reminder
+   */
   openModal(reminder: IReminder, title: string): void {
     const initialState = { reminder, title };
     this.bsModalRef = this.modalService.show(ModalContentComponent, { initialState });
   }
 
+  /**
+   * Part of the cicly of life of angular applications and will unsubscribe the subscription of the store
+   */
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
@@ -100,9 +108,13 @@ export class ModalContentComponent implements OnInit {
     });
   }
 
+  /**
+   * When the user finish to add or edit a new reminder if the form is valid
+   * this function will send a new reminder and will be stored in the store of reminders
+   */
   onSubmit(): void {
     if (this.addForm.valid) {
-      this.bsModalRef.hide();
+      this.closeModal();
       this.addForm.value.id = this.reminder.id;
       this.addForm.value.color = this.color;
       this.store.dispatch(new ReminderActions.StopEditReminder());
@@ -121,10 +133,16 @@ export class ModalContentComponent implements OnInit {
     }
   }
 
+  /**
+   * Close modal when user clicked outside of the modal or the user finish of add or edit a reminder
+   */
   closeModal(): void {
     this.bsModalRef.hide();
   }
 
+  /**
+   * Return form control
+   */
   get f() {
     return this.addForm.controls;
   }

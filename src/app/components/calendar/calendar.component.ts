@@ -6,7 +6,6 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../../redux/reducers/index.reducer';
 import * as CalendarActions from '../../redux/actions/calendar.actions';
 import * as ReminderActions from '../../redux/actions/reminders.actions';
-
 import {
   faTrashAlt, faChevronLeft, faChevronRight, faCalendarPlus, IconDefinition
  } from '@fortawesome/free-solid-svg-icons';
@@ -136,26 +135,47 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+  /**
+   * function that determine if the current day is weekend or not
+   * 0 is sunday, 6 is saturday
+   * @param day current day of the week
+   */
   isWeekend(day: moment.Moment): boolean {
     return parseInt(day.format('d'), 10) === 0 || parseInt(day.format('d'), 10) === 6  ? true : false;
   }
 
+  /**
+   * function that determine if the reminder is in the day current date,
+   * if true, render the reminder in the current day
+   */
   checkIfReminderIsInTheCurrentDate(actualDate: moment.Moment, reminderDate: moment.Moment): boolean {
     return actualDate.isSame(reminderDate, 'day');
   }
 
+  /**
+   *
+   * @param reminder is the reminder selected by the user to be edit
+   * the user has the posibility to edit name, color, date, city, hour
+   */
   editReminder(reminder: IReminder): void {
     this.isEditing = true;
     this.store.dispatch(new ReminderActions.EditReminder(reminder));
     setTimeout(() => this.isEditing = false, 1);
   }
 
+  /**
+   *
+   * @param index represent the index in the store of the reminder selected and will be deleted
+   */
   deleteReminder(index: number): void {
     this.isDeleting = true;
     this.store.dispatch(new ReminderActions.DeleteReminder(index));
     setTimeout(() => this.isDeleting = false, 1);
   }
 
+  /**
+   * function that allow delete all reminders in the store of reminders
+   */
   deleteAllReminders(): void {
     this.store.dispatch(new ReminderActions.DeleteAllReminders());
   }
