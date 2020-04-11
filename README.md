@@ -40,7 +40,7 @@ Remember install the last version of  [Angular CLI](https://angular.io/guide/set
 
 ## Calendar Reminder Screenshots
 
-![App whitout Reminder](https://photos.app.goo.gl/BuyJYnr8G6Njjw3w5)
+![App whitout Reminder](src/img/calendar.png)
 
 ![Modal Reminder](https://photos.app.goo.gl/9iKyR3PHkmXrnzy57)
 
