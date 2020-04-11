@@ -105,6 +105,7 @@ export class ModalContentComponent implements OnInit {
       color: [''],
       city: [this.reminder.city, Validators.required],
       date: [new Date(year, month, day, parseInt(hour[0], 10), parseInt(hour[1], 10)), Validators.required],
+      hour: [new Date(year, month, day, parseInt(hour[0], 10), parseInt(hour[1], 10)), Validators.required],
     });
   }
 

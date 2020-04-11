@@ -14,8 +14,14 @@ export const DELETE_ALL_REMINDERS = '[Reminders] Delete All Reminders';
 export class AddReminder implements Action {
     readonly type = ADD_REMINDER;
     constructor(public payload: IReminder) {
-        this.payload.date = moment(this.payload.date);
-        this.payload.hour = moment(this.payload.date).format('HH:mm');
+        payload.date = moment(payload.date);
+        payload.hour = moment(this.payload.hour).format('HH:mm');
+        const year = payload.date.year();
+        const month = payload.date.month();
+        const day = payload.date.date();
+        const hour = payload.hour.split(':');
+        const date = new Date(year, month, day, parseInt(hour[0], 10), parseInt(hour[1], 10));
+        this.payload.date = moment(date) ;
     }
 }
 
