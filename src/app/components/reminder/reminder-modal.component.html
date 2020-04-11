@@ -18,7 +18,8 @@
     <div class="form-group">
       <label for="inputColor">Color</label>
       <input id="inputColor" type="text" class="form-control" aria-describedby="color" [(colorPicker)]="color"
-        [style.background]="color" formControlName="color" readonly="true" [cpPosition]="'bottom'" />
+        [style.background]="color" formControlName="color" readonly="true" [cpPosition]="'bottom'" [cpOKButton]="true"
+        [cpCancelButton]="true"/>
     </div>
     <div class="form-group">
       <label for="inputCity">City</label>
