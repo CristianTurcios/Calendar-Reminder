@@ -6,7 +6,7 @@ Live Demo: [Calendar Reminder](https://cranky-bohr-4dedce.netlify.com/)
 
 Remember install the last version of  [Angular CLI](https://angular.io/guide/setup-local)
 
-## ## Development
+## Development
 
 1. Run  `git clone git@github.com:CristianTurcios/Calendar-Reminder.git` in your console.
 2. Run  `cd calendar-reminder`.
