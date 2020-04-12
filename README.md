@@ -46,4 +46,4 @@ Remember install the last version of  [Angular CLI](https://angular.io/guide/set
 
 ![Calendar with Reminders](src/assets/img/calendar-with-reminders.png)
 
-![Test](src/assets/img/test.png)
+![Test](src/assets/img/test.PNG)
